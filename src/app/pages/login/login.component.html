@@ -104,6 +104,7 @@
     </div>
   </div>
 </nav>
+<div *ngIf="user" >name user : {{user.name}}</div> 
 <div class="wrapper">
   <div class="page-header">
     <img class="dots" src="assets/img/dots.png" />
@@ -128,16 +129,20 @@
               <h4 class="title">Ingrese credenciales</h4>
             </div>
             <div class="card-body text-muted">
-              <form>
+              <form *ngIf="loginForm" [formGroup]="loginForm" >
                 <div class="row">
                   <div class="col-md-8 ml-auto mr-auto">
                     <div class="form-group">
+                      {{f.errors | json}}
                       <h3> Correo Electrónico </h3>
                       <input
-                        class="form-control"
-                        placeholder="mike@email.com"
+                        formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                        placeholder="correo@domain.com"
                         type="email"
                       />
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -148,9 +153,12 @@
                       <input
                         class="form-control"
                         type="password"
-                        value="password--"
-                        
+                        value="password"
+                        formControlName="password"
                       />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -160,8 +168,9 @@
                       class="btn btn-danger btn-round float-right"
                       placement="right"
                       type="submit"
+                      (click)="onSubmit()"
                     >
-                      Send text
+                      Iniciar Sesión
                     </button>
                   </div>
                 </div>

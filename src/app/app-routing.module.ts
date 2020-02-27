@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterpageComponent },
   { path: 'landing', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
+  // canActivate: [AuthGuard]
 ];
 
 @NgModule({

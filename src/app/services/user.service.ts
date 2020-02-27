@@ -17,14 +17,4 @@ export class UserService {
   public getUsers(): Observable<any> {
     return this.http.get(`${this.name}/test`);
   }
-
-  public login(credential: CredentialDto): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-    const body = new HttpParams()
-    .set('email', credential.email)
-    .set('password', credential.password);
-    return this.http.post(`http://localhost:3000/api/login`, body, { headers },  );
-  }
 }
