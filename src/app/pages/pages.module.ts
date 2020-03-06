@@ -22,6 +22,10 @@ import { ProfilepageComponent } from './examples/profilepage/profilepage.compone
 import { RegisterpageComponent } from './examples/registerpage/registerpage.component';
 import { LandingpageComponent } from './examples/landingpage/landingpage.component';
 import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtinterceptorService } from '../services/jwtinterceptor.service';
+import { HomeuserComponent } from './homeuser/homeuser.component';
 
 @NgModule({
   imports: [
@@ -48,7 +52,9 @@ import { LoginComponent } from './login/login.component';
     ProfilepageComponent,
     RegisterpageComponent,
     LandingpageComponent,
-    LoginComponent
+    LoginComponent,
+    MenuComponent,
+    HomeuserComponent
   ],
   exports: [
     IndexComponent,
@@ -56,6 +62,8 @@ import { LoginComponent } from './login/login.component';
     RegisterpageComponent,
     LandingpageComponent
   ],
-  providers: []
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi: true },
+  ]
 })
 export class PagesModule {}

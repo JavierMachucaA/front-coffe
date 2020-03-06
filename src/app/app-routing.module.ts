@@ -8,15 +8,18 @@ import { ProfilepageComponent } from './pages/examples/profilepage/profilepage.c
 import { RegisterpageComponent } from './pages/examples/registerpage/registerpage.component';
 import { LandingpageComponent } from './pages/examples/landingpage/landingpage.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuardService } from './services/authguard.service';
+import { HomeuserComponent } from './pages/homeuser/homeuser.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: IndexComponent },
+  { path: 'home-user', component: HomeuserComponent, canActivate: [AuthGuardService] },
+  { path: 'register', component: RegisterpageComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfilepageComponent },
-  { path: 'register', component: RegisterpageComponent },
   { path: 'landing', component: LandingpageComponent },
   { path: 'login', component: LoginComponent },
-  // canActivate: [AuthGuard]
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

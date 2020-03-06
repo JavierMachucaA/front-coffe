@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   date = new Date();
   pagination = 3;
   pagination1 = 1;
+  
   constructor() {}
   scrollToDownload(element: any) {
     element.scrollIntoView({ behavior: "smooth" });
@@ -42,6 +43,7 @@ export class IndexComponent implements OnInit, OnDestroy {
         max: 100
       }
     });
+
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];

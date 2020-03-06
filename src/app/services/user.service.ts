@@ -9,7 +9,7 @@ import { CredentialDto } from '../internal/credential.dto';
   providedIn: 'root'
 })
 export class UserService {
-  name = `http://localhost:3000/api/users`;
+  name = `${environment.backendUri}/api/users`;
   constructor(
     private readonly http: HttpClient,
   ) { }
